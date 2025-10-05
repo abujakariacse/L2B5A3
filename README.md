@@ -77,7 +77,7 @@ DATABASE_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/libraryDB
 
 `
 npm run build
-npm start:dev
+npm run start:dev
 The server will run at: http://localhost:5000
 
 ```
