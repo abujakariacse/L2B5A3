@@ -1,9 +1,23 @@
+import { FilterQuery } from 'mongoose';
 import { Book } from './book.model';
 
 const createBook = async (payload: any) => {
   return await Book.create(payload);
 };
 
+const getAllBooks = async (query: any) => {
+  const filter: FilterQuery<any> = {};
+  if (query.filter) filter.genre = query.filter;
+
+  const sort: any = {};
+  if (query.sortBy && query.sort)
+    sort[query.sortBy] = query.sort === 'desc' ? -1 : 1;
+
+  const limit = query.limit ? parseInt(query.limit) : 10;
+
+  return await Book.find(filter).sort(sort).limit(limit);
+};
 export const bookServices = {
   createBook,
+  getAllBooks,
 };

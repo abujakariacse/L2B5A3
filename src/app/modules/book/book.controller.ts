@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { bookServices } from './book.service';
 
-export const createBook = async (req: Request, res: Response) => {
+const createBook = async (req: Request, res: Response) => {
   try {
     const data = await bookServices.createBook(req.body);
     res
@@ -14,6 +14,18 @@ export const createBook = async (req: Request, res: Response) => {
   }
 };
 
+const getAllBooks = async (req: Request, res: Response) => {
+  try {
+    const data = await bookServices.getAllBooks(req.query);
+    res.json({ success: true, message: 'Books retrieved successfully', data });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: 'Failed to retrieve books', error });
+  }
+};
+
 export const bookController = {
   createBook,
+  getAllBooks,
 };
