@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { appRoutes } from './app/routes';
 
 const app: Application = express();
 
@@ -8,6 +9,8 @@ const app: Application = express();
 app.use(cors({ origin: ['http://localhost:3000'] }));
 app.use(cookieParser());
 app.use(express.json());
+
+app.use('/', appRoutes.router);
 
 app.get('/', (req: Request, res: Response) => {
   res.send(`The server is running!`);

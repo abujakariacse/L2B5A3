@@ -56,6 +56,7 @@ const bookSchema = new Schema<TBook>(
   },
   {
     timestamps: true,
+    versionKey: false,
   },
 );
 
