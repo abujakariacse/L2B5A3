@@ -17,7 +17,13 @@ const getAllBooks = async (query: any) => {
 
   return await Book.find(filter).sort(sort).limit(limit);
 };
+
+const getBookById = async (id: string) => {
+  return await Book.findById(id);
+};
+
 export const bookServices = {
   createBook,
   getAllBooks,
+  getBookById,
 };
