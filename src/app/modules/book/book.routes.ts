@@ -9,6 +9,8 @@ router.get('/', bookController.getAllBooks);
 
 router.get('/:bookId', bookController.getBookById);
 
+router.put('/:bookId', bookController.updateBook);
+
 export const bookRoutes = {
   router,
 };

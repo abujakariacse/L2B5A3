@@ -22,8 +22,21 @@ const getBookById = async (id: string) => {
   return await Book.findById(id);
 };
 
+const updateBook = async (id: string, payload: any) => {
+  return await Book.findByIdAndUpdate(id, payload, {
+    new: true,
+    runValidators: true,
+  });
+};
+
+const deleteBook = async (id: string) => {
+  return await Book.findByIdAndDelete(id);
+};
+
 export const bookServices = {
   createBook,
   getAllBooks,
   getBookById,
+  updateBook,
+  deleteBook,
 };

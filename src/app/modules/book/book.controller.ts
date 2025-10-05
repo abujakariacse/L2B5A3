@@ -40,8 +40,24 @@ const getBookById = async (req: Request, res: Response) => {
   }
 };
 
+const updateBook = async (req: Request, res: Response) => {
+  try {
+    const data = await bookServices.updateBook(req.params.bookId, req.body);
+    if (!data)
+      return res
+        .status(404)
+        .json({ success: false, message: 'Book not found' });
+    res.json({ success: true, message: 'Book updated successfully', data });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ success: false, message: 'Failed to update book', error });
+  }
+};
+
 export const bookController = {
   createBook,
   getAllBooks,
   getBookById,
+  updateBook,
 };
